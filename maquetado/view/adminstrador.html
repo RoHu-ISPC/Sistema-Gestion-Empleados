@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel Administrativo - DGIC</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* --- VARIABLES (Navy & Gold) --- */
+        :root {
+            --navy-dark: #0F1C2E;
+            --navy-light: #1a3a5e;
+            --gold: #FB8B24;
+            --gold-hover: #d9771f;
+            --white: #ffffff;
+            --bg-gray: #f4f6f9;
+            --text-main: #333;
+            --text-light: #777;
+            --danger: #dc3545;
+            --success: #28a745;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Roboto', sans-serif; }
+        
+        body {
+            background-color: var(--bg-gray);
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* --- SIDEBAR (Barra Lateral) --- */
+        .sidebar {
+            width: 260px;
+            background-color: var(--navy-dark);
+            color: var(--white);
+            display: flex;
+            flex-direction: column;
+            position: fixed;
+            height: 100%;
+            transition: width 0.3s;
+        }
+
+        .brand {
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            background-color: rgba(0,0,0,0.2);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .brand img { height: 40px; margin-right: 10px; }
+        .brand span { font-weight: 700; font-size: 1.1rem; letter-spacing: 0.5px; }
+
+        .user-panel {
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .user-avatar {
+            width: 40px; height: 40px;
+            background-color: var(--navy-light);
+            border-radius: 50%;
+            display: flex; justify-content: center; align-items: center;
+            margin-right: 10px; border: 2px solid var(--gold);
+        }
+
+        .sidebar-menu { list-style: none; padding: 20px 0; flex-grow: 1; }
+        .sidebar-menu li { margin-bottom: 5px; }
+        
+        .sidebar-menu a {
+            display: flex; align-items: center;
+            padding: 12px 20px;
+            color: #bdc3c7;
+            text-decoration: none;
+            transition: 0.3s;
+            border-left: 4px solid transparent;
+        }
+
+        .sidebar-menu a:hover, .sidebar-menu a.active {
+            background-color: rgba(255,255,255,0.05);
+            color: var(--white);
+            border-left-color: var(--gold);
+        }
+
+        .sidebar-menu i { margin-right: 15px; width: 20px; text-align: center; }
+
+        /* --- MAIN CONTENT --- */
+        .main-content {
+            margin-left: 260px;
+            flex-grow: 1;
+            padding: 20px 40px;
+        }
+
+        /* --- HEADER SUPERIOR --- */
+        .top-header {
+            display: flex; justify-content: space-between; align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #e1e4e8;
+        }
+
+        .page-title h1 { font-size: 1.8rem; color: var(--navy-dark); font-weight: 700; }
+        .page-title span { color: var(--text-light); font-size: 0.9rem; }
+
+        /* --- KPI CARDS (Métricas) --- */
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .kpi-card {
+            background: var(--white);
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border-top: 4px solid var(--navy-light);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .kpi-info h3 { font-size: 2rem; font-weight: 700; color: var(--navy-dark); margin-bottom: 5px; }
+        .kpi-info p { color: var(--text-light); font-size: 0.9rem; text-transform: uppercase; font-weight: 500; }
+        .kpi-icon { font-size: 2.5rem; color: #e1e4e8; }
+        
+        /* Acento dorado para la tarjeta principal */
+        .kpi-card.gold-accent { border-top-color: var(--gold); }
+        .kpi-card.gold-accent .kpi-icon { color: rgba(251, 139, 36, 0.2); }
+
+        /* --- SECCIÓN DE REGISTRO (FORMULARIO) --- */
+        .admin-panel-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr; /* 2 partes tabla, 1 parte formulario */
+            gap: 30px;
+        }
+
+        .panel-box {
+            background: var(--white);
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            padding: 25px;
+        }
+
+        .box-header {
+            display: flex; justify-content: space-between; align-items: center;
+            margin-bottom: 20px; border-bottom: 1px solid #eee; padding-bottom: 15px;
+        }
+
+        .box-header h3 { color: var(--navy-dark); font-size: 1.2rem; }
+        
+        /* Formulario de Alta */
+        .form-group { margin-bottom: 15px; }
+        .form-label { display: block; margin-bottom: 5px; font-weight: 500; font-size: 0.9rem; color: var(--navy-dark); }
+        .form-control {
+            width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px;
+            font-size: 0.9rem; background-color: #fafafa;
+        }
+        .form-control:focus { outline: none; border-color: var(--gold); background-color: #fff; }
+
+        .btn-submit {
+            width: 100%; padding: 12px; background-color: var(--navy-dark); color: var(--white);
+            border: none; border-radius: 4px; font-weight: 700; cursor: pointer; transition: 0.3s;
+        }
+        .btn-submit:hover { background-color: var(--gold); color: var(--navy-dark); }
+
+        /* Tabla Simplificada */
+        .table-responsive { width: 100%; border-collapse: collapse; }
+        .table-responsive th { text-align: left; padding: 12px; background-color: #f8f9fa; color: var(--navy-dark); font-size: 0.85rem; text-transform: uppercase; }
+        .table-responsive td { padding: 12px; border-bottom: 1px solid #eee; font-size: 0.9rem; }
+        .badge { padding: 4px 8px; border-radius: 12px; font-size: 0.75rem; font-weight: 700; }
+        .badge-active { background-color: rgba(40, 167, 69, 0.1); color: var(--success); }
+        .btn-action { border: none; background: none; cursor: pointer; color: var(--text-light); transition: 0.2s; }
+        .btn-action:hover { color: var(--gold); }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .admin-panel-grid { grid-template-columns: 1fr; }
+            .sidebar { width: 70px; }
+            .sidebar .brand span, .sidebar .sidebar-menu span, .user-panel span { display: none; }
+            .main-content { margin-left: 70px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="sidebar">
+        <div class="brand">
+            <img src="logo_dgic.png" alt="Logo">
+            <span>DGIC ADMIN</span>
+        </div>
+        
+        <div class="user-panel">
+            <div class="user-avatar"><i class="fa-solid fa-user-tie"></i></div>
+            <span>Admin General</span>
+        </div>
+
+        <ul class="sidebar-menu">
+            <li><a href="#" class="active"><i class="fa-solid fa-gauge"></i> <span>Dashboard</span></a></li>
+            <li><a href="#"><i class="fa-solid fa-users"></i> <span>Empleados</span></a></li>
+            <li><a href="#"><i class="fa-solid fa-calendar-check"></i> <span>Asistencias</span></a></li>
+            <li><a href="#"><i class="fa-solid fa-file-contract"></i> <span>Permisos</span></a></li>
+            <li><a href="#"><i class="fa-solid fa-chalkboard-user"></i> <span>Capacitaciones</span></a></li>
+            <li style="margin-top: auto; border-top: 1px solid rgba(255,255,255,0.1);">
+                <a href="index.html"><i class="fa-solid fa-right-from-bracket"></i> <span>Cerrar Sesión</span></a>
+            </li>
+        </ul>
+    </nav>
+
+    <main class="main-content">
+        
+        <header class="top-header">
+            <div class="page-title">
+                <h1>Panel de Control</h1>
+                <span>Visión general y gestión de personal</span>
+            </div>
+            <div>
+                <button class="btn-submit" style="width: auto; padding: 10px 20px; background-color: var(--gold); color: var(--navy-dark);">
+                    <i class="fa-solid fa-download"></i> Reporte Mensual
+                </button>
+            </div>
+        </header>
+
+        <section class="kpi-grid">
+            <div class="kpi-card gold-accent">
+                <div class="kpi-info">
+                    <h3>142</h3>
+                    <p>Total Empleados</p>
+                </div>
+                <div class="kpi-icon"><i class="fa-solid fa-users"></i></div>
+            </div>
+
+            <div class="kpi-card">
+                <div class="kpi-info">
+                    <h3 style="color: var(--success);">94%</h3>
+                    <p>Tasa de Asistencia Hoy</p>
+                </div>
+                <div class="kpi-icon"><i class="fa-solid fa-chart-pie"></i></div>
+            </div>
+
+            <div class="kpi-card">
+                <div class="kpi-info">
+                    <h3>5</h3>
+                    <p>Permisos Pendientes</p>
+                </div>
+                <div class="kpi-icon"><i class="fa-solid fa-clipboard-list"></i></div>
+            </div>
+        </section>
+
+        <section class="admin-panel-grid">
+            
+            <div class="panel-box">
+                <div class="box-header">
+                    <h3>Personal Reciente</h3>
+                    <a href="#" style="color: var(--gold); font-size: 0.9rem;">Ver todos</a>
+                </div>
+                <table class="table-responsive">
+                    <thead>
+                        <tr>
+                            <th>Legajo</th>
+                            <th>Nombre</th>
+                            <th>Departamento</th>
+                            <th>Estado</th>
+                            <th>Acción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>#LP-204</td>
+                            <td>Of. Carlos Ruiz</td>
+                            <td>Homicidios</td>
+                            <td><span class="badge badge-active">Activo</span></td>
+                            <td><button class="btn-action"><i class="fa-solid fa-pen-to-square"></i></button></td>
+                        </tr>
+                        <tr>
+                            <td>#LP-205</td>
+                            <td>Sgto. Ana M.</td>
+                            <td>Logística</td>
+                            <td><span class="badge badge-active">Activo</span></td>
+                            <td><button class="btn-action"><i class="fa-solid fa-pen-to-square"></i></button></td>
+                        </tr>
+                        <tr>
+                            <td>#LP-206</td>
+                            <td>Crio. Jorge T.</td>
+                            <td>Administración</td>
+                            <td><span class="badge badge-active">Activo</span></td>
+                            <td><button class="btn-action"><i class="fa-solid fa-pen-to-square"></i></button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="panel-box">
+                <div class="box-header">
+                    <h3><i class="fa-solid fa-user-plus" style="color: var(--gold);"></i> Registrar Usuario</h3>
+                </div>
+                <form>
+                    <div class="form-group">
+                        <label class="form-label">Correo Electrónico (Usuario)</label>
+                        <input type="email" class="form-control" placeholder="ej: nombre@policia.cba.gov.ar">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Contraseña Temporal</label>
+                        <input type="password" class="form-control" placeholder="********">
+                    </div>
+                    
+                    <hr style="border: 0; border-top: 1px dashed #eee; margin: 15px 0;">
+                    
+                    <div class="form-group">
+                        <label class="form-label">Nombre Completo</label>
+                        <input type="text" class="form-control" placeholder="Nombre y Apellido">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Departamento / Área</label>
+                        <select class="form-control">
+                            <option>Investigaciones</option>
+                            <option>Criminalística</option>
+                            <option>Administración</option>
+                            <option>Recursos Humanos</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Rol en Sistema</label>
+                        <select class="form-control">
+                            <option value="user">Usuario (Agente)</option>
+                            <option value="admin">Administrador</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="btn-submit">Dar de Alta</button>
+                </form>
+            </div>
+
+        </section>
+    </main>
+
+</body>
+</html>

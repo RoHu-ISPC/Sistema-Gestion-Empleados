@@ -1,4 +1,6 @@
-/* --- CONFIGURACIÓN GLOBAL & PALETA --- */
+/* ==========================================================================
+   CONFIGURACION GLOBAL & PALETA
+   ========================================================================== */
 :root {
     --navy-dark: #0F1C2E;
     --navy-light: #1A3A5E;
@@ -33,7 +35,10 @@ body:not(.page-login) {
 a { text-decoration: none; color: inherit; }
 ul { list-style: none; }
 
-/* --- BARRA DE NAVEGACIÓN (NAVBAR) --- */
+
+/* ==========================================================================
+   BARRA DE NAVEGACIÓN (NAVBAR) 
+   ========================================================================== */
 .navbar {
     background-color: var(--navy-dark);
     height: 70px;
@@ -86,6 +91,7 @@ ul { list-style: none; }
 
 .btn-nav-login:hover { background-color: var(--gold-hover); }
 
+
 /* --- HERO SECTION --- */
 .hero {
     height: 100vh;
@@ -109,6 +115,15 @@ ul { list-style: none; }
 }
 
 .hero-title-highlight { color: var(--gold); }
+
+.hero-content p {
+    font-size: 1.2rem;
+    max-width: 800px;
+    margin: 0 auto 40px auto; /* El tercer valor (40px) es el espacio hacia abajo */
+    opacity: 0.9;
+    line-height: 1.5; /* Mejora la lectura si el texto tiene varias líneas */
+}
+
 
 .btn-cta {
     display: inline-block;
@@ -190,7 +205,10 @@ section { padding: 80px 10%; }
     margin-bottom: 20px;
 }
 
-/* --- ESTILOS ESPECÍFICOS DEL LOGIN --- */
+
+/* ==========================================================================
+   LOGIN & REGISTRO COMPARTEN ESTILOS
+   ========================================================================== */
 body.page-login {
     display: flex;
     flex-direction: column;
@@ -201,14 +219,12 @@ body.page-login {
     background-position: center;
     background-attachment: fixed;
 }
-
-/* Este contenedor es vital para que el login no rompa el index */
 .login-main-content {
     flex: 1;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 120px 20px 60px 20px; /* Espacio para el nav y el footer */
+    padding: 120px 20px 60px 20px; 
 }
 
 .login-container {
@@ -305,7 +321,10 @@ body.page-login {
     }
 }
 
-/* --- FOOTER --- */
+
+/* ==========================================================================
+  FOOTER
+   ========================================================================== */
 footer {
     background-color: var(--navy-dark);
     color: var(--white);
@@ -319,8 +338,10 @@ footer {
     .hero-content h1 { font-size: 2.5rem; }
 }    
 
+/* ==========================================================================
+   QUIENES SOMOS?
+   ========================================================================== */
 
-/*-- QUIENES SOMOS --*/
 
 .page-nosotros .main-container {
     padding-top: 100px; 
@@ -345,7 +366,7 @@ footer {
     padding-right: 20px;
 }
 
-/* Esto es lo que crea las columnas */
+/*las columnas */
 .team-grid {
     display: grid !important;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)) !important;
@@ -354,7 +375,7 @@ footer {
     width: 100% !important;
 }
 
-/* Estilo de la tarjeta (para que no sea solo texto) */
+/* Estilo de la tarjeta */
 .team-card {
     background: #ffffff !important;
     border-radius: 10px !important;
@@ -383,8 +404,9 @@ footer {
     color: rgba(255,255,255,0.5);
 }
 
-
-/* --- ESTILOS DE CONTACTO --- */
+/* ==========================================================================
+   CONTACTO
+   ========================================================================== */
 
 .contacto-wrapper {
     display: grid;
@@ -442,22 +464,22 @@ footer {
     padding-top: 25px !important; /* Reducido de 120px a 80px */
 }
 
-/* 2. Borde amarillo en la tarjeta de Información (Azul) */
+/* 2. Borde amarillo en la tarjeta(Azul) */
 .contacto-info {
     background-color: var(--navy-dark);
     color: var(--white);
     padding: 40px;
     border-radius: 10px;
-    border-top: 5px solid var(--gold); /* Detalle dorado solicitado */
+    border-top: 5px solid var(--gold); /* Detalle dorado*/
     box-shadow: 0 10px 30px rgba(0,0,0,0.2);
 }
 
-/* 3. Borde amarillo en la tarjeta del Formulario (Blanca) */
+/* 3. Borde amarillo en la tarjeta(Blanca)*/
 .contacto-form-card {
     background: var(--white);
     padding: 40px;
     border-radius: 10px;
-    border-top: 5px solid var(--gold); /* Detalle dorado solicitado */
+    border-top: 5px solid var(--gold); /* Detalle dorado */
     box-shadow: 0 10px 30px rgba(0,0,0,0.1);
 }
 
@@ -466,8 +488,9 @@ footer {
     margin-bottom: 30px; /* Título más cerca de las tarjetas */
 }
 
-
-/* --- ESTILOS DASHBOARD --- */
+/* ==========================================================================
+   PANEL DE USUARIO - DASHBOARD
+   ========================================================================== */
 
 .page-dashboard {
     background-color: var(--gray-bg);
@@ -589,4 +612,16 @@ footer {
 .dashboard-card {
     padding: 30px !important;
     border-top: 4px solid var(--gold);
+}
+
+
+/* ==========================================================================
+   PANEL DE ADMIN - DASHBOARD
+   ========================================================================== */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body.admin-layout {
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--bg-light);
+    display: flex;
 }
