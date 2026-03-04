@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Usuario - DGIC</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/Sistema-Gestion-Empleados/maquetado/css/style.css">
+</head>
+<body class="page-login"> <nav class="navbar">
+        <div class="logo-area">
+            <img src="/Sistema-Gestion-Empleados/maquetado/img/sge1.png" alt="DGIC Logo">
+        </div>
+        <div class="nav-links">
+            <a href="index.html">Inicio</a>
+            <a href="login.html" class="btn-nav-login">Iniciar Sesion</a>
+            <a href="registroUsuario.html">Registro</a>
+            <a href="quienesSomos.html">Quiénes Somos</a>
+            <a href="contacto.html">Contacto</a>
+            <a href="panelUsuario.html">Panel Usuario</a>
+        </div>
+    </nav>
+
+    <main class="login-main-content">
+        <div class="login-container" style="max-width: 600px;"> <div class="logo-box">
+                <img src="/Sistema-Gestion-Empleados/maquetado/img/sge.png" alt="SGE Logo" class="logo-img" style="width: 180px;">
+            </div>
+
+            <div class="system-title">Crear Cuenta</div>
+            <p class="system-subtitle">Complete los datos para solicitar acceso al sistema.</p>
+
+            <form action="#" method="POST">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                    <div class="form-group">
+                        <label class="form-label">Nombre/s</label>
+                        <input type="text" class="form-input" placeholder="Ej: Juan" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Apellido/s</label>
+                        <input type="text" class="form-input" placeholder="Ej: Pérez" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Legajo Policial</label>
+                    <input type="number" class="form-input" placeholder="Ingrese su número de legajo" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Correo Institucional</label>
+                    <input type="email" class="form-input" placeholder="usuario@policiadecordoba.gov.ar" required>
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                    <div class="form-group">
+                        <label class="form-label">Contraseña</label>
+                        <input type="password" class="form-input" placeholder="••••••••" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Confirmar Contraseña</label>
+                        <input type="password" class="form-input" placeholder="••••••••" required>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-login">Registrar Usuario</button>
+            </form>
+
+            <div class="login-footer">
+                <span>¿Ya tiene cuenta? </span><a href="login.html" class="forgot-link">Inicie Sesión aquí</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-logo">POLICÍA DE CÓRDOBA - Dirección General de Investigaciones Criminales</div>
+        <p class="copyright">© 2026 Todos los derechos reservados.</p>
+    </footer>
+
+</body>
+</html>

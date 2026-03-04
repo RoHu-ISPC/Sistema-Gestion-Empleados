@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto - DGIC</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/Sistema-Gestion-Empleados/maquetado/css/style.css">
+</head>
+<body class="page-nosotros">
+
+    <nav class="navbar">
+        <div class="logo-area">
+            <img src="/Sistema-Gestion-Empleados/maquetado/img/sge1.png" alt="DGIC Logo">
+        </div>
+        <div class="nav-links">
+            <a href="index.html">Inicio</a>
+            <a href="login.html" class="btn-nav-login">Iniciar Sesion</a>
+            <a href="registroUsuario.html" >Registro</a>
+            <a href="quienesSomos.html">Quiénes Somos</a>
+            <a href="contacto.html">Contacto</a>
+            <a href="panelUsuario.html">Panel Usuario</a>
+        </div>
+    </nav>
+
+    <main class="main-container">
+        <section class="contacto-section">
+            <div class="section-header">
+                <h1>Canales de <span class="hero-title-highlight" style="color: var(--navy-dark); border-bottom: 4px solid var(--gold);">Comunicación</span></h1>
+                <p>Estamos a su disposición para consultas técnicas o administrativas sobre el sistema.</p>
+            </div>
+
+            <div class="contacto-wrapper">
+                <div class="contacto-info">
+                    <div class="info-item">
+                        <i class="fa-solid fa-location-dot"></i>
+                        <div>
+                            <h4>Ubicación</h4>
+                            <p>Av. Colón 1250, Córdoba Capital</p>
+                            <p>Central de Policía de Córdoba</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fa-solid fa-phone"></i>
+                        <div>
+                            <h4>Teléfono Externo</h4>
+                            <p>0351 - 4287000</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fa-solid fa-envelope"></i>
+                        <div>
+                            <h4>Correo Electrónico</h4>
+                            <p>soporte.dgic@policiadecordoba.gov.ar</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contacto-form-card">
+                    <form action="#" method="POST">
+                        <div class="form-group">
+                            <label class="form-label">Nombre Completo / Jerarquía</label>
+                            <input type="text" class="form-input" placeholder="Ej: Of. Insp. Juan Pérez" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Correo Institucional</label>
+                            <input type="email" class="form-input" placeholder="su-email@policia.gov.ar" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Asunto</label>
+                            <select class="form-input" style="appearance: none;">
+                                <option>Problemas de acceso al portal</option>
+                                <option>Consulta sobre Legajo Policial</option>
+                                <option>Soporte Técnico de Software</option>
+                                <option>Otros</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Mensaje</label>
+                            <textarea class="form-input" rows="5" placeholder="Describa su consulta aquí..." style="resize: none;"></textarea>
+                        </div>
+                        <button type="submit" class="btn-login" style="margin-bottom: 0;">Enviar Consulta</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-logo">POLICÍA DE CÓRDOBA - Dirección General de Investigaciones Criminales</div>
+        <p class="copyright">© 2026 Todos los derechos reservados.</p>
+    </footer>
+
+</body>
+</html>
